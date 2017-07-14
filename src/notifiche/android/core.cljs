@@ -39,12 +39,24 @@
         (.catch (fn [error] (put! c error))))
     c))
 
-(.localNotificationSchedule PushNot #js {:message "My notification" :date (new js/Date (+ (.now js/Date) (* 360 1000)))})
+;(.localNotificationSchedule PushNot #js {:message "My notification" :date (new js/Date (+ (.now js/Date) (* 60 1000)))})
 
 (defn app-root []
-  (let [prov (r/atom "")]
+  (let [prov (r/atom "")
+        serv (r/atom "")
+        ]
     (go
-      (reset! prov (.-_bodyText (<! (fetch "http://10.0.3.2:8000/")))))
+      (reset! serv (.-_bodyText (<! (fetch "http://192.168.0.135:8000/app"))))
+      )
+    (.configure PushNot #js {:onRegister (fn [token] (println "tok" (.-token token)) (reset! prov (.-token token))(go (<! (fetch "http://192.168.0.135:8000/token" #js {:method "POST"
+             :headers #js {:Content-Type "application/json"}
+             :body (js/JSON.stringify #js {:token @prov})}))))
+                             :onNotification (fn [notification] (.localNotification PushNot #js {:message (str (.-body (.-notification notification)))}))
+      ;:onNotification (fn [notification] (println "notification" (str (.-body (.-notification notification)))))
+                             :senderID "683248056340"
+                             :requestPermissions true})
+
+
     (fn []
       [view {:style {:flex-direction "column" :margin 40 :align-items "center"}}
        [text {:style {:font-size 30 :font-weight "100" :margin-bottom 20 :text-align "center"}} "ciao"]
@@ -52,7 +64,7 @@
                :style  {:width 80 :height 80 :margin-bottom 30}}]
        [touchable-highlight {:style {:background-color "#999" :padding 10 :border-radius 5}
                              :on-press #(alert "HELLO!")}
-        [text {:style {:color "white" :text-align "center" :font-weight "bold"}} (str @prov)]]])))
+        [text {:style {:color "white" :text-align "center" :font-weight "bold"}} (str @serv)]]])))
 
 (defn init []
   (dispatch-sync [:initialize-db])
