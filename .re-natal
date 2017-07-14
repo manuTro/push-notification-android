@@ -17,7 +17,7 @@
       "modules": []
     },
     "android": {
-      "host": "10.0.3.2",
+      "host": "localhost",
       "modules": []
     }
   }
