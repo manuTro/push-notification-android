@@ -44,7 +44,7 @@
 (defn app-root []
   (let [prov (r/atom "")]
     (go
-      (reset! prov (.-_bodyText (<! (fetch "http://10.0.3.2:8000/")))))
+      (reset! prov (.-_bodyText (<! (fetch "http://10.0.3.2:8000/app")))))
     (fn []
       [view {:style {:flex-direction "column" :margin 40 :align-items "center"}}
        [text {:style {:font-size 30 :font-weight "100" :margin-bottom 20 :text-align "center"}} "ciao"]

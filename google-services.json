@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "683248056340",
+    "firebase_url": "https://notifiche-50bda.firebaseio.com",
+    "project_id": "notifiche-50bda",
+    "storage_bucket": "notifiche-50bda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:683248056340:android:df399f9ed981b9b8",
+        "android_client_info": {
+          "package_name": "com.notifiche"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "683248056340-lcqrde9963hec6kspcvtjtg1r84dg3b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmLxrvbA-t2vqm-Fx7jvYnM71-ZbOdiwk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
